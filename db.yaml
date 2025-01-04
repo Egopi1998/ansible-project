@@ -1,6 +1,9 @@
 - name: configuring DB server - MySql
   hosts: db
   become: yes
+  vars: 
+    login_user: root
+    login_host: db.hellandhaven.xyz
   vars_prompt:
     name: db_root_password
     prompt: please enter your db root password
@@ -15,5 +18,11 @@
         name: mysqld
         state: started
         enabled: yes
-    - name: mysql root password
-      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ db_root_password }}"
+    - name: check connection
+      community.mysql.mysql_info:
+        login_user: "{{ login_user }}"
+        login_password: "{{ db_root_password }}"
+        login_host: "{{ login_host }}"
+        filter: version
+    # - name: mysql root password
+    #   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ db_root_password }}"
