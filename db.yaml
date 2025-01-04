@@ -31,7 +31,10 @@
         login_host: "{{ login_host }}"
         filter: version
       ignore_errors: yes
-      register: db_connection_output
+      register: db_connection_output # check connection result will store in below variable
+    - name: output of check connection
+      ansible.builtin.debug:
+        msg: "output {{ db_connection_output }}"
     - name: mysql root password
       ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ db_root_password }}"
       when: db_connection_output.failed is true
