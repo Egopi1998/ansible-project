@@ -32,5 +32,5 @@
         filter: version
       ignore_errors: yes
       register: db_connection_output
-    # - name: mysql root password
-    #   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ db_root_password }}"
+    - name: mysql root password
+      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ db_root_password }}"
