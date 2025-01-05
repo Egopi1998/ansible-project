@@ -46,7 +46,7 @@
       name:
       - PyMySQL
       - cryptography
-    executable: pip3.9
+      executable: pip3.9
   - name: load mysql schema
     community.mysql.mysql_db:
       login_user: "{{ login_user }}"
