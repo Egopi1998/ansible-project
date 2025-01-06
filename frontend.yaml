@@ -24,6 +24,7 @@
     ansible.builtin.copy:
       src: expense.conf
       dest: /etc/nginx/default.d/expense.conf
+    notify: nginx restart
       # remote_src: yes
   - name: nginx restart
     ansible.builtin.service:
