@@ -6,6 +6,7 @@
     ansible.builtin.dnf:
       name: nginx
       state: latest
+    tags: nginx
   - name:  systemctl enable/start nginx
     ansible.builtin.service:
       name: nginx
